@@ -1,4 +1,3 @@
-require 'debug'
 # プレイヤーを用意
 class Player
   def initialize(name, card)
