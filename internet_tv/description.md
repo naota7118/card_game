@@ -1,184 +1,185 @@
+## 手順
+以下3つの手順で進めていきます。
+1. データベース作成
+2. テーブル作成
+3. サンプルデータ入れる
 
+## データベース作成
 MySQLにログインします。
+```sql
 mysql -u test_user
+```
 
 データベースを作成します。
+```sql
 CREATE DATABASE internet_tv;
+```
 
 データベースに移動します。
+```sql
 USE internet_tv;
+```
 
-番組テーブルを作成します。
+## テーブル作成
+
+### 番組テーブル
 テーブル名はprogramsです。
 
-
-まずIDカラムとタイトルカラムだけで作成します。
+```sql
 CREATE TABLE programs (
-  id BIGINT AUTO_INCREMENT,
-  title VARCHAR(255), 
-  PRIMARY KEY (id)
+  program_id BIGINT AUTO_INCREMENT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  genre_id BIGINT NOT NULL,
+  channel_id BIGINT NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  PRIMARY KEY (program_id)
 );
+```
 
 テーブルが正しく作れているか確認します。
-SHOW COLUMNS FROM programs;
-
-番組名カラムにNOT NULL制約がかかってなかったので追加します。
-ALTER TABLE programs MODIFY COLUMN title VARCHAR(255) NOT NULL;
-
-カラムに放送日、開始時刻、終了時刻、動画時間、視聴数を追加します。
-ALTER TABLE programs ADD COLUMN onair_date DATE NOT NULL;
-ALTER TABLE programs ADD COLUMN start_time TIME NOT NULL;
-ALTER TABLE programs ADD COLUMN end_time TIME NOT NULL;
-ALTER TABLE programs ADD COLUMN minutes BIGINT NOT NULL;
-ALTER TABLE programs ADD COLUMN views BIGINT NOT NULL;
-
-
-番組テーブルを作成します。
-テーブル名はgenresです。
-
+```sql
+DESCRIBE programs;
+```
+### ジャンルテーブル
+```sql
 CREATE TABLE genres (
-  id BIGINT AUTO_INCREMENT,
+  genre_id BIGINT AUTO_INCREMENT NOT NULL,
   genre VARCHAR(255) NOT NULL, 
-  PRIMARY KEY (id)
+  PRIMARY KEY (genre_id)
 );
+```
 
-番組テーブルのジャンルIDカラムがジャンルカラムのIDを参照するように外部キー制約を設定します。
-ALTER TABLE programs ADD FOREIGN KEY fk_genre(genre_id) REFERENCES genres(id);
-
-チャンネルテーブルを作成します。
-テーブル名はchannelsです。
-
-CREATE TABLE channels (
-  id BIGINT AUTO_INCREMENT,
-  channel VARCHAR(255) NOT NULL, 
-  PRIMARY KEY (id)
-);
-
-
-番組テーブルにチャンネルIDカラムを追加します。
-ALTER TABLE programs ADD COLUMN channel_id BIGINT NOT NULL;
-
-番組テーブルのチャンネルIDカラムがチャンネルカラムのIDを参照するように外部キー制約を設定します。
-ALTER TABLE programs ADD FOREIGN KEY fk_channel(channel_id) REFERENCES channels(id);
-
-外部キー制約がかかっているかは以下で確認できます。
-SHOW CREATE TABLE programs;
-
-
-シーズンテーブルを作成します。
-テーブル名はseasonsです。
-
-CREATE TABLE seasons (
-  id BIGINT AUTO_INCREMENT,
-  PRIMARY KEY (id)
-);
-
-
-エピソードテーブルを作成します。
-テーブル名はepisodesです。
-
-CREATE TABLE episodes (
-  id BIGINT AUTO_INCREMENT,
-  PRIMARY KEY (id)
-);
-
-テーブルの構造は以下で確認できます。
-DESCRIBE episodes;
-
-番組テーブルにシーズンIDカラムを追加します。
-ALTER TABLE programs ADD COLUMN season_id BIGINT NOT NULL;
-
-エピソードテーブルのエピソードIDカラムがシーズンカラムのシーズンIDカラムを参照するように外部キー制約を設定します。
-ALTER TABLE programs ADD FOREIGN KEY fk_channel(channel_id) REFERENCES channels(id);
-
-カラム名がIDだとわかりづらいので、program_idに変更します。
-ALTER TABLE programs CHANGE COLUMN id program_id BIGINT; 
-
-カラム名がIDだとわかりづらいので、ジャンルテーブルのidカラムをgenre_idに変更します。
-しかし、今のままでは外部キー制約がかかっていて変更できません。
-外部キー制約をいったん外します。
-ALTER TABLE programs DROP FOREIGN KEY programs_ibfk_1;
-
-これでカラム名を変更できます。
-ALTER TABLE genres CHANGE COLUMN id genre_id BIGINT; 
-
-再び外部キー制約を設定します。
+テーブルが正しく作れているか確認します。
+```sql
+DESCRIBE genres;
+```
+#### 外部キー制約
+programsテーブルのgenre_idカラムにgenresテーブルのgenre_idを参照する外部キー制約を設定します。
+```sql
 ALTER TABLE programs ADD FOREIGN KEY fk_genre(genre_id) REFERENCES genres(genre_id);
+```
 
+外部キー制約を確認します。
+```sql
+SHOW CREATE TABLE programs;
+```
 
-カラム名がIDだとわかりづらいので、チャンネルテーブルのidカラムをchannel_idに変更します。
-しかし、今のままでは外部キー制約がかかっていて変更できません。
-外部キー制約をいったん外します。
-ALTER TABLE programs DROP FOREIGN KEY programs_ibfk_1;
+### チャンネルテーブル
+```sql
+CREATE TABLE channels (
+  channel_id BIGINT AUTO_INCREMENT NOT NULL,
+  channel VARCHAR(255) NOT NULL, 
+  PRIMARY KEY (channel_id)
+);
+```
 
-これでカラム名を変更できます。
-ALTER TABLE channels CHANGE COLUMN id channel_id BIGINT; 
+テーブルが正しく作れているか確認します。
+```sql
+DESCRIBE channels;
+```
 
-再び外部キー制約を設定します。
+#### 外部キー制約
+programsテーブルのchannel_idカラムにchannelsテーブルのchannel_idを参照する外部キー制約を設定します。
+```sql
 ALTER TABLE programs ADD FOREIGN KEY fk_channel(channel_id) REFERENCES channels(channel_id);
+```
 
-カラム名がIDだとわかりづらいので、season_idに変更します。
-ALTER TABLE seasons CHANGE COLUMN id season_id BIGINT;
+外部キー制約を確認します。
+```sql
+SHOW CREATE TABLE programs;
+```
 
-カラム名がIDだとわかりづらいので、episode_idに変更します。
-ALTER TABLE episodes CHANGE COLUMN id episode_id BIGINT;
+### シーズンテーブル
+```sql
+CREATE TABLE seasons (
+  season_id BIGINT AUTO_INCREMENT NOT NULL,
+  season BIGINT,
+  program_id BIGINT NOT NULL,
+  PRIMARY KEY (season_id)
+);
+```
 
+#### 外部キー制約
+seasonsテーブルのprogram_idカラムにprogramsテーブルのprogram_idを参照する外部キー制約を設定します。
+```sql
+ALTER TABLE seasons ADD FOREIGN KEY fk_program(program_id) REFERENCES programs(program_id);
+```
 
-エピソードテーブルのepisode_idカラムがシーズンテーブルのseason_idカラムを参照するように外部キー制約を設定します。
-ALTER TABLE episodes ADD FOREIGN KEY episode_fk(episode_id) REFERENCES seasons(season_id);
-
-正しく設定されたか以下で確認できます。
-SHOW CREATE TABLE episodes;
-
-
-シーズンテーブルのseason_idカラムが番組テーブルのseason_idカラムを参照するように外部キー制約を設定します。
-ALTER TABLE seasons ADD FOREIGN KEY season_fk(season_id) REFERENCES programs(program_id);
-
-正しく設定されたか以下で確認できます。
+外部キー制約を確認します。
+```sql
 SHOW CREATE TABLE seasons;
+```
 
-programsテーブルのseasons_idカラムは不要なので削除します。
-ALTER TABLE programs DROP COLUMN season_id;
+### エピソードテーブル
+```sql
+CREATE TABLE episodes (
+  episode_id BIGINT AUTO_INCREMENT NOT NULL,
+  season_id BIGINT NOT NULL,
+  title VARCHAR(255) NOT NULL, 
+  epi_desc VARCHAR(255) NOT NULL, 
+  time BIGINT NOT NULL,
+  date DATE NOT NULL,
+  views BIGINT NOT NULL,
+  start_time DATETIME NOT NULL,
+  end_time DATETIME NOT NULL,
+  episode BIGINT,
+  PRIMARY KEY (episode_id)
+);
+```
 
-チャンネルテーブルにデータを入れます。
+#### 外部キー制約
+episodesテーブルのseason_idカラムにseasonsテーブルのseason_idカラムを参照する外部キー制約を設定します。
+```sql
+ALTER TABLE episodes ADD FOREIGN KEY fk_season(season_id) REFERENCES seasons(season_id);
+```
+
+外部キー制約を確認します。
+```sql
+SHOW CREATE TABLE episodes;
+```
+
+## サンプルデータを入れる
+
+### チャンネルテーブル
+```sql
 INSERT INTO channels (channel_id, channel) VALUES(1, "ドラマ&映画1");
 INSERT INTO channels (channel_id, channel) VALUES(2, "ドラマ&映画2");
-QINSERT INTO channels (channel_id, channel) VALUES(3, "バラエティ1");
+INSERT INTO channels (channel_id, channel) VALUES(3, "バラエティ1");
 INSERT INTO channels (channel_id, channel) VALUES(4, "バラエティ2");
 INSERT INTO channels (channel_id, channel) VALUES(5, "ニュース");
 INSERT INTO channels (channel_id, channel) VALUES(6, "アニメ1");
 INSERT INTO channels (channel_id, channel) VALUES(7, "アニメ2");
-INSERT INTO channels (channel_id, channel) VALUES(8, "アニメ3");
-INSERT INTO channels (channel_id, channel) VALUES(9, "韓流・華流ドラマ");
-INSERT INTO channels (channel_id, channel) VALUES(10, "スポーツ");
-INSERT INTO channels (channel_id, channel) VALUES(11, "将棋");
-INSERT INTO channels (channel_id, channel) VALUES(12, "麻雀");
-INSERT INTO channels (channel_id, channel) VALUES(13, "格闘");
+INSERT INTO channels (channel_id, channel) VALUES(8, "スポーツ");
+```
 
-
-ジャンルテーブルにデータを入れます。
+### ジャンルテーブル
+```sql
 INSERT INTO genres (genre_id, genre) VALUES(1, "アニメ");
 INSERT INTO genres (genre_id, genre) VALUES(2, "スポーツ");
-INSERT INTO genres (genre_id, genre) VALUES(3, "サッカー");
-INSERT INTO genres (genre_id, genre) VALUES(4, "バラエティ");
-INSERT INTO genres (genre_id, genre) VALUES(5, "恋愛番組");
-INSERT INTO genres (genre_id, genre) VALUES(6, "映画");
-INSERT INTO genres (genre_id, genre) VALUES(7, "ドラマ");
-INSERT INTO genres (genre_id, genre) VALUES(8, "ニュース");
-INSERT INTO genres (genre_id, genre) VALUES(9, "韓流・華流");
-INSERT INTO genres (genre_id, genre) VALUES(10, "将棋");
-INSERT INTO genres (genre_id, genre) VALUES(11, "麻雀");
-INSERT INTO genres (genre_id, genre) VALUES(12, "格闘");
+INSERT INTO genres (genre_id, genre) VALUES(3, "バラエティ");
+INSERT INTO genres (genre_id, genre) VALUES(4, "映画");
+INSERT INTO genres (genre_id, genre) VALUES(5, "ドラマ");
+INSERT INTO genres (genre_id, genre) VALUES(6, "ニュース");
+```
 
-番組テーブルにデータを入れます。
-INSERT INTO programs(program_id, title, onair_date, start_time, end_time, minutes, views, genre_id, channel_id) VALUES(1, "黒革の手帖", "2024-02-29",
-"20:00:00", "21:00:00", 60, 50000, 7, 1);
+### 番組テーブル
+```sql
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(1, "黒革の手帖", 5, 1, "これまで何度も映像化され、多くの反響・共感を得てきた『黒革の手帖』。「清張史上最強」と言われるあの“悪女”が甦る！武井咲、江口洋介出演。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(2, "葬送のフリーレン", 1, 6, "勇者ヒンメルたちと共に、10 年に及ぶ冒険の末に魔王を打ち倒し、世界に平和をもたらした魔法使いフリーレン。千年以上生きるエルフである彼女は、ヒンメルたちと再会の約束をし、独り旅に出る。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(3, "メジャー", 1, 7, "吾郎がおとさんと同じプロ野球選手の道を志し、やがて、メジャー・リーグの選手になることを目指す物語。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(4, "世界の果てに、ひろゆき置いてきた", 3, 3, "ひろゆきを、アフリカのナミブ砂漠に置き去りに… 「予算10万円、移動は陸路のみ」という過酷なルールでアフリカ横断に挑む!!");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(5, "孤独のグルメ", 5, 2, "ただ料理のうんちくを述べるのではなく、ひたすらに主人公の食事シーンと心理描写をつづり、ドキュメンタリーのように淡々とストーリーが流れていく原作人気マンガ、「孤独のグルメ」を実写化。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(6, "APPRENTICEニュース会見", 6, 5, "日本初「会見チャンネル」。注目の記者会見や政府の会見からスポーツ・芸能関連の会見まで。日本に限らず世界の注目会見をリアルタイムに。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(7, "ASO飯塚チャレンジドゴルフトーナメント", 2, 8, "2022年よりジャパンゴルフツアーの新規トーナメントとして「ASO飯塚チャレンジドゴルフトーナメント」が開催されることとなりました。");
+```
 
-
-シーズンテーブルにデータを入れます。
+### シーズンテーブル
+```sql
 INSERT INTO seasons(season_id) VALUES(1);
-
+```
 INSERT INTO seasons(season_id) VALUES(2);
+
+
 エラーが発生しました。
 Cannot add or update a child row: a foreign key constraint fails (`internet_tv`.`seasons`, CONSTRAINT `seasons_ibfk_1` FOREIGN KEY (`season_id`) REFERENCES `programs` (`program_id`))
 seasons_idはprogramsテーブルのprogram_idを参照しており、program_id=2が存在しないため、登録できないのが現状です。
