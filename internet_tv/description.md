@@ -1,5 +1,6 @@
 
 MySQLにログインします。
+mysql -u test_user
 
 データベースを作成します。
 CREATE DATABASE internet_tv;
