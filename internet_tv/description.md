@@ -23,7 +23,7 @@ USE internet_tv;
 ## テーブル作成
 
 ### 番組テーブル
-テーブル名はprogramsです。
+番組テーブルを作成します。
 
 ```sql
 CREATE TABLE programs (
@@ -41,6 +41,7 @@ CREATE TABLE programs (
 DESCRIBE programs;
 ```
 ### ジャンルテーブル
+ジャンルテーブルを作成します。
 ```sql
 CREATE TABLE genres (
   genre_id BIGINT AUTO_INCREMENT NOT NULL,
@@ -65,6 +66,7 @@ SHOW CREATE TABLE programs;
 ```
 
 ### チャンネルテーブル
+チャンネルテーブルを作成します。
 ```sql
 CREATE TABLE channels (
   channel_id BIGINT AUTO_INCREMENT NOT NULL,
@@ -141,6 +143,7 @@ SHOW CREATE TABLE episodes;
 ## サンプルデータを入れる
 
 ### チャンネルテーブル
+チャンネルテーブルにデータを入れます。
 ```sql
 INSERT INTO channels (channel_id, channel) VALUES(1, "ドラマ&映画1");
 INSERT INTO channels (channel_id, channel) VALUES(2, "ドラマ&映画2");
@@ -153,6 +156,7 @@ INSERT INTO channels (channel_id, channel) VALUES(8, "スポーツ");
 ```
 
 ### ジャンルテーブル
+ジャンルテーブルにデータを入れます。
 ```sql
 INSERT INTO genres (genre_id, genre) VALUES(1, "アニメ");
 INSERT INTO genres (genre_id, genre) VALUES(2, "スポーツ");
@@ -163,392 +167,78 @@ INSERT INTO genres (genre_id, genre) VALUES(6, "ニュース");
 ```
 
 ### 番組テーブル
+
+番組テーブルにデータを入れます。
 ```sql
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(1, "黒革の手帖", 5, 1, "これまで何度も映像化され、多くの反響・共感を得てきた『黒革の手帖』。「清張史上最強」と言われるあの“悪女”が甦る！武井咲、江口洋介出演。");
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(2, "葬送のフリーレン", 1, 6, "勇者ヒンメルたちと共に、10 年に及ぶ冒険の末に魔王を打ち倒し、世界に平和をもたらした魔法使いフリーレン。千年以上生きるエルフである彼女は、ヒンメルたちと再会の約束をし、独り旅に出る。");
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(3, "メジャー", 1, 7, "吾郎がおとさんと同じプロ野球選手の道を志し、やがて、メジャー・リーグの選手になることを目指す物語。");
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(4, "世界の果てに、ひろゆき置いてきた", 3, 3, "ひろゆきを、アフリカのナミブ砂漠に置き去りに… 「予算10万円、移動は陸路のみ」という過酷なルールでアフリカ横断に挑む!!");
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(5, "孤独のグルメ", 5, 2, "ただ料理のうんちくを述べるのではなく、ひたすらに主人公の食事シーンと心理描写をつづり、ドキュメンタリーのように淡々とストーリーが流れていく原作人気マンガ、「孤独のグルメ」を実写化。");
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(6, "APPRENTICEニュース会見", 6, 5, "日本初「会見チャンネル」。注目の記者会見や政府の会見からスポーツ・芸能関連の会見まで。日本に限らず世界の注目会見をリアルタイムに。");
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(7, "ASO飯塚チャレンジドゴルフトーナメント", 2, 8, "2022年よりジャパンゴルフツアーの新規トーナメントとして「ASO飯塚チャレンジドゴルフトーナメント」が開催されることとなりました。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(1, "星降る夜の奇跡", 5, 1, "町の人々が不思議な出来事を目撃する物語。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(2, "スターライト・クエスト", 1, 6, "「スターライト・クエスト」は、銀河の果てに眠る伝説の宝を求めて、勇敢な冒険者たちが旅立つファンタジーアニメ。主人公のアリアと彼女の仲間たちは、魔法と冒険が溢れる世界を旅しながら、友情や成長を経験し、最後には銀河の秘宝を手に入れるために壮大な戦いに挑む。 ");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(3, "クリスタル・ウィングスの冒険", 1, 7, "少女エリアと仲間たちは、伝説の魔法の羽根「クリスタル・ウィングス」を探す旅に出る。彼らは魔法の力を学びながら、邪悪な魔法使いとの戦いに立ち向かい、最後のクリスタル・ウィングスを見つけるために奮闘する。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(4, "アフリカ探検隊", 3, 3, "「アフリカ探検隊」は、大自然の美しさや文化の多様性を探求するバラエティ番組。冒険好きな旅団がアフリカ大陸を旅し、驚異的な動物たちや壮大な風景、地元の人々の暮らしを紹介する。彼らはサファリで野生動物を追跡し、熱帯雨林や砂漠を探検しながら、アフリカの魅力的な魅力を発見する。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(5, "味の記憶", 5, 2, "「味の記憶」は、料理と人生の物語が交錯する感動のグルメ系ドラマ。主人公は、料理人としての才能を持ちながら、過去のトラウマや挫折に苦しみながらも、料理を通じて新たな人生の可能性を模索する。彼（彼女）の料理は、食材の魔法のように人々の心を癒し、過去の傷を癒す。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(6, "ワールド・フォーカス", 6, 5, "「ワールド・フォーカス」は、世界中の最新のニュースと情報を提供するリアルタイムのニュース番組です。国際情勢、政治、経済、文化、エンターテイメントなど、様々な分野から厳選されたニュースが伝えられます。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(7, "グリーン・マスターズ", 2, 8, "「グリーン・マスターズ」は、ゴルフ愛好家のためのエキサイティングなゴルフ番組です。この番組では、世界中のプロゴルファーやアマチュアゴルファーが競い合う様子を生中継し、ゴルフ界の最新情報やテクニックを紹介します。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(8, "ハチャメチャトーク！", 3, 4, "「ハチャメチャトーク！」は、笑いと驚きに満ちたトークバラエティ番組です。ホストたちがゲストを招き、さまざまな面白いトピックや興味深いエピソードについて話します。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(9, "笑いのサーカス！", 3, 3, "「笑いのサーカス！」は、笑いとエンターテイメントが溢れるお笑い番組です。有名なお笑い芸人や新人コメディアンが登場し、個性豊かなネタやコントを披露します。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(10, "影の謎", 5, 2, "「影の謎」は、都市の裏社会で起こる様々な事件を描いたミステリードラマです。主人公は、秘密の捜査官であり、彼（彼女）は犯罪や陰謀に満ちた街を舞台に、未解決の事件や謎に挑みます。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(11, "サイバー・ストライカーズ", 1, 7, ""サイバー・ストライカーズ"は、未来の都市を舞台にしたアクション満載のアニメ番組です。主人公たちは、特殊な能力を持つ若きサイバーネット戦士で、悪の組織と戦う特殊部隊に所属しています。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(12, "泳ぎの舞台", 2, 8, "「泳ぎの舞台」は、世界各地の水泳競技を取り上げるスポーツ番組です。プールやオープンウォーターなど、さまざまな水域での競技を紹介し、プロフェッショナルな水泳選手たちの情熱と競技力を追います。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(13, "未知の探求者", 4, 1, "「未知の探求者」は、冒険心と好奇心に満ちた人々が未知の地域や未知の領域を探求する姿を追ったドキュメンタリー映画です。");
+INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(14, "影の隠者", 5, 2, "「影の隠者」は、都市の裏社会で暗躍する謎の人物と、彼に挑む警察官たちの攻防を描いたサスペンスドラマです。");
 ```
 
 ### シーズンテーブル
+
+シーズンテーブルにデータを入れます。
+
 ```sql
-INSERT INTO seasons(season_id) VALUES(1);
-```
-INSERT INTO seasons(season_id) VALUES(2);
-
-
-エラーが発生しました。
-Cannot add or update a child row: a foreign key constraint fails (`internet_tv`.`seasons`, CONSTRAINT `seasons_ibfk_1` FOREIGN KEY (`season_id`) REFERENCES `programs` (`program_id`))
-seasons_idはprogramsテーブルのprogram_idを参照しており、program_id=2が存在しないため、登録できないのが現状です。
-
-外部キー制約の設定を誤っているため修正します。
-外部キー制約を外します。
-ALTER TABLE seasons DROP FOREIGN KEY seasons_ibfk_1;
-
-seasonsテーブルに外部キー設定用のカラムを追加します。
-ALTER TABLE seasons ADD COLUMN program_id BIGINT NOT NULL;
-
-seasonsテーブルに残っているデータを削除します。
-DELETE FROM seasons WHERE season_id = 1;
-
-seasonsテーブルのprogram_idカラムがprogramsテーブルのprogram_idカラムを参照するようにします。（外部キー制約）
-ALTER TABLE seasons ADD FOREIGN KEY season_fk(program_id) REFERENCES programs(program_id);
-
-正しく設定されたか以下で確認できます。
-SHOW CREATE TABLE seasons;
-
-現状だと、episodesテーブルのepisode_idカラムがseasonsテーブルのseason_idカラムを参照するようになっています。
-このままだとシーズンとエピソードが対になってしまいます。
-
-外部キー制約を外します。
-ALTER TABLE episodes DROP FOREIGN KEY episodes_ibfk_1;
-
-episodesテーブルにseasonsテーブルを参照するためのseason_idカラムを追加します。
-ALTER TABLE episodes ADD COLUMN season_id BIGINT NOT NULL;
-
-外部キー制約をかけます。
-ALTER TABLE episodes ADD FOREIGN KEY episode_fk(season_id) REFERENCES seasons(season_id);
-
-
-
-seasonsテーブルにデータを入れます。
-INSERT INTO seasons(season_id, program_id) VALUES(1, 1);
-
-episodesテーブルにデータを入れます。
-INSERT INTO episodes(episode_id, season_id) VALUES(1, 1);
-
-programsテーブルに説明カラムを追加します。
-ALTER TABLE programs ADD COLUMN description VARCHAR(255) NOT NULL;
-
-すでに入ってるデータ(program_id=1)の説明を更新します。
-UPDATE programs SET description = "これまで何度も映像化され、多くの反響・共感を得てきた『黒革の手帖』。「清張史上最強」と言われるあの“悪女”が甦る！武井咲、江口洋介出演。" WHERE program_id = 1;
-
-programsテーブルからonair_date, start_time, end_time, minutes, viewsカラムを削除します。
-（これらの情報はepisodesテーブルで管理するため）
-ALTER TABLE programs DROP COLUMN onair_date;
-ALTER TABLE programs DROP COLUMN views;
-ALTER TABLE programs DROP COLUMN start_time;
-ALTER TABLE programs DROP COLUMN end_time;
-ALTER TABLE programs DROP COLUMN minutes;
-
-エピソードテーブルにタイトル(title)、エピソード詳細(epi_desc)、動画時間(time)、公開日(date)、視聴数(views)のカラムを追加します。
-ALTER TABLE episodes ADD COLUMN title VARCHAR(255) NOT NULL;
-ALTER TABLE episodes ADD COLUMN epi_desc VARCHAR(255) NOT NULL;
-ALTER TABLE episodes ADD COLUMN time BIGINT NOT NULL;
-ALTER TABLE episodes ADD COLUMN date DATE NOT NULL;
-ALTER TABLE episodes ADD COLUMN views BIGINT NOT NULL;
-
-episodesテーブルに1件入っているデータの情報を更新します。
-UPDATE episodes SET title = "松本清張 黒革の手帖 第1話" WHERE episode_id = 1;
-UPDATE episodes SET epi_desc = "東林銀行に勤める原口元子(米倉涼子)は、今日も営業用の笑顔で窓口に座っていた。その一方で、銀行の架空名義口座から大金を横領しつつ、架空名義預金者たちのリストを愛用の黒革の手帖に記していた。横領金が1億2千万円に達したとき、支店次長の村井(渡辺いっけい)らが元子の横領に気づく。それを知った元子は、そのまま銀行の外へ飛び出した。" WHERE episode_id = 1;
-UPDATE episodes SET time = 59 WHERE episode_id = 1;
-UPDATE episodes SET date = "2024-03-01" WHERE episode_id = 1;
-UPDATE episodes SET views = 88000 WHERE episode_id = 1;
-
-episodesテーブルに、放送開始時刻、放送終了時刻カラムを追加します。
-ALTER TABLE episodes ADD COLUMN start_time TIME NOT NULL;
-ALTER TABLE episodes ADD COLUMN end_time TIME NOT NULL;
-
-
-UPDATE episodes SET start_time = "17:00" WHERE episode_id = 1;
-UPDATE episodes SET end_time = "18:05" WHERE episode_id = 1;
-
-episodesテーブルにデータを入れます。
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time) VALUES(2, 1, "松本清張 黒革の手帖 第2話", "楢林美容外科クリニックの婦長で楢林(小林稔侍)の愛人でもある市子(室井滋)を呼び出した元子は、楢林と波子(釈由美子)の仲を中傷し、いかに市子が楢林のクリニック発展に貢献したかを褒め上げる。市子の嫉妬を煽り、楢林と波子の仲を裂くように仕向けなければならない。市子の信頼を得るために、元子はしたたかな計算を働かせていた。",
-46, "2024-03-08", 23000, "17:00", "18:00");
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time) VALUES(3, 1, "松本清張 黒革の手帖 第3話", "安島(仲村トオル)に危ないところを助けられた元子(米倉涼子)は、警察に連絡するという安島に、藤岡(小野武彦)は不倫相手で大ごとにしたくないと誤魔化す。だが安島は、藤岡と元子の会話を立ち聞きしていた。",
-46, "2024-03-15", 19000, "17:00", "18:00");
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time) VALUES(4, 1, "松本清張 黒革の手帖 第4話", "安島とベッドをともにした元子は、これは過去を知られたことに対する口止めであり、自分は一生誰も愛さないと安島に言い放つ。それは、安島に惹かれていく自分自身への戒めの言葉でもあった。",
-46, "2024-03-22", 17000, "17:00", "18:00");
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time) VALUES(5, 1, "松本清張 黒革の手帖 第5話", "元子(米倉涼子)に、裏口入学周旋の証拠を突きつけられた橋田(柳葉敏郎)は、それはニセモノだと笑い飛ばす。というのも、澄江(吉岡美穂)が元子を裏切り、橋田と共謀、彼女が元子に渡した証拠はニセモノだというのだ。だが、元子は動じなかった。",
-46, "2024-03-29", 17000, "17:00", "18:00");
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time) VALUES(6, 1, "松本清張 黒革の手帖 第6話", "元子が新装オープンさせた『ロダン』に、波子(釈由美子)が客としてやってくる。元子や店のホステスたちに散々嫌味を述べ立て、店を後にする波子。翌日、元子は京都に向かった。",
-46, "2024-04-05", 16000, "17:00", "18:00");
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time) VALUES(7, 1, "松本清張 黒革の手帖 最終話", "安島(仲村トオル)の口から長谷川(津川雅彦)の屈辱的な伝言を聞かされ、愕然とする元子(米倉涼子)。長谷川に『ロダン』の残金2億1千万円どころか、キャンセル料8千4百万円さえも払えなくなってしまい、自分の着物や装飾品を売ってまで金を作ろうとするが、とても足りるような額にはならない。",
-78, "2024-04-12", 18000, "17:00", "18:30");
-
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(2, "葬送のフリーレン", 1, 6, "勇者ヒンメルたちと共に、10 年に及ぶ冒険の末に魔王を打ち倒し、世界に平和をもたらした魔法使いフリーレン。千年以上生きるエルフである彼女は、ヒンメルたちと再会の約束をし、独り旅に出る。");
-
-seasonsテーブルにseasonカラムを追加します。
-ALTER TABLE seasons ADD COLUMN season BIGINT NOT NULL;
-
-既存データのseasonカラムを更新します。
-UPDATE seasons SET season = 1 WHERE season_id = 1;
-
-葬送のフリーレンのデータを入れていきます。
+INSERT INTO seasons(season_id, program_id, season) VALUES(1, 1, 1);
 INSERT INTO seasons(season_id, program_id, season) VALUES(2, 2, 1);
-
-episodesテーブルにepisodeカラムを追加します。
-ALTER TABLE episodes ADD COLUMN episode BIGINT NOT NULL;
-
-UPDATE episodes SET episode = 1 WHERE episode_id = 1;
-UPDATE episodes SET episode = 2 WHERE episode_id = 2;
-UPDATE episodes SET episode = 3 WHERE episode_id = 3;
-UPDATE episodes SET episode = 4 WHERE episode_id = 4;
-UPDATE episodes SET episode = 5 WHERE episode_id = 5;
-UPDATE episodes SET episode = 6 WHERE episode_id = 6;
-UPDATE episodes SET episode = 7 WHERE episode_id = 7;
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(8, 2, "葬送のフリーレン #25", "勇者ヒンメルたちと共に、10年に及ぶ冒険の末に魔王を打ち倒し、世界に平和をもたらした魔法使いフリーレン。千年以上生きるエルフである彼女は、ヒンメルたちと再会の約束をし、独り旅に出る。",
-30, "2024-03-02", 0, "00:00", "00:30", 25);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(9, 2, "#24 完璧な複製体", "第二次試験でダンジョン「零落の王墓」に入った受験者たちの前に、彼らの複製体が立ちふさがる。その複製体は魔法によりそれぞれの実力・魔力・技術などを完全にコピーした実体だった。",
-30, "2024-02-24", 419000, "00:00", "00:30", 24);
-
-
-メジャーのデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(3, "メジャー", 1, 7, "吾郎がおとさんと同じプロ野球選手の道を志し、やがて、メジャー・リーグの選手になることを目指す物語。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(3, 3, 3);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(10, 3, "第1話 ゼロからのスタート", "海堂高校をやめた吾郎は、旧友・小森たちがいる三船高校の野球部に入るつもりだったが、夏の大会予選の三船高校の試合を見て考えを変え、他の高校の編入試験を目指すことにする。",
-26, "2024-03-01", 562000, "22:35", "23:00", 1);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(11, 3, "第2話 新しい仲間", "通学中に突然、目の前に現れた吾郎から、聖秀高校に入って野球部を作ると聞いた清水は、嬉しさ半分、心配半分。クラスで吾郎に一目ぼれした中村は、「マネージャーになってあげる」と積極的にアタック。",
-26, "2024-03-01", 169000, "23:00", "23:30", 2);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(12, 3, "第3話 父から子へ", "今シーズン負け続きの吾郎の父・茂野。気晴らしをして朝帰りも多いため、桃子も機嫌が悪い。吾郎は理事長に野球部設立をかけあうが、まず同好会として承認し、正式な部として認めるかは今後の活動次第だという。",
-26, "2024-03-01", 154000, "23:30", "24:00", 3);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(13, 3, "第4話 無謀な賭け", "野球部の顧問・山田のつてで、強豪・帝仁高校との練習試合が決まった吾郎たち。吾郎のボールは帝仁選手たちの度胆をぬき、バットに当てることもできない。だが、田代が「清水がキャッチャーで公式戦は戦えない」とクレームをつけた。",
-26, "2024-03-02", 157000, "00:00", "00:30", 4);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(14, 3, "第4話 俺たちのグラウンド", "清水と藤井のプレーで、同点に追いついた聖秀。そこでまた、田代が清水と口論に。そのとき「もう無理にチームに入ってくれとは頼まない」と言い出す吾郎。",
-26, "2024-03-02", 155000, "00:30", "01:00", 5);
-
-世界の果てに、ひろゆき置いてきたのデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(4, "世界の果てに、ひろゆき置いてきた", 4, 4, "ひろゆきを、アフリカのナミブ砂漠に置き去りに… 「予算10万円、移動は陸路のみ」という過酷なルールでアフリカ横断に挑む!!");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(4, 4, 1);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(15, 4, "#6：世界最貧国！マラウイ屠殺場で出会った男", "世界最貧国と言われるマラウイへ入国したひろゆき＆東出昌大。東出が自力で牛を解体し、町民総出でBBQをしていると。警察が出動する騒ぎに…", 48, "2024-03-02", 578000, "16:00", "17:00", 6);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(16, 4, "#7：鉄槌！神に背きし者たち", "世界最貧国マラウイでひろゆき＆東出昌大が事故に巻き込まれる。
-旅を続けることは出来るのか…？", 52, "2024-03-02", 685000, "17:00", "18:00", 7);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(17, 4, "#8：悶絶！東出…人生最大の危機", "とりあえず、ひろゆきをナミビアの砂漠に置き去りにしました。", 52, "2024-03-02", 607000, "18:00", "19:00", 8);
-
-channelsテーブルからアニメ3、韓流・華流ドラマ、将棋、麻雀、格闘を削除します。
-DELETE FROM channels WHERE channel_id = 8;
-DELETE FROM channels WHERE channel_id = 9;
-DELETE FROM channels WHERE channel_id = 11;
-DELETE FROM channels WHERE channel_id = 12;
-DELETE FROM channels WHERE channel_id = 13;
-
-よく見られているエピソードを知りたいです。エピソード視聴数トップ3のエピソードタイトルと視聴数を取得してください
-SELECT title, views FROM episodes ORDER BY views DESC LIMIT 3;
-
-よく見られているエピソードの番組情報やシーズン情報も合わせて知りたいです。エピソード視聴数トップ3の番組タイトル、シーズン数、エピソード数、エピソードタイトル、視聴数を取得してください
-
-内部結合を2回使います。
-episodesテーブルにseasonsテーブルを結合し、さらにprogramsテーブルを結合します。
-結合には外部キーを使用します。
-
-select programs.title, season, episode, episodes.title, views
-from episodes
-join seasons
-on episodes.season_id = seasons.season_id
-join programs
-on seasons.program_id = programs.program_id
-ORDER BY views DESC 
-LIMIT 3;
-
-本日の番組表を表示するために、本日、どのチャンネルの、何時から、何の番組が放送されるのかを知りたいです。本日放送される全ての番組に対して、チャンネル名、放送開始時刻(日付+時間)、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を取得してください。なお、番組の開始時刻が本日のものを本日方法される番組とみなすものとします
-
-現状、放送開始時刻をTIME型"16:26:00"の形式で保存しているので、このままだと「番組の開始時刻が本日のもの」を取得できません。
-データ型をDATETIME型'2019-10-04 15:25:07'に変更します。
-ALTER TABLE episodes MODIFY COLUMN date DATETIME;
-
-すでに入れてある17のレコードを正しい日付+開始時刻に修正します。
-UPDATE episodes SET start_time = "2024-03-01 17:00:00" WHERE episode_id = 1;
-UPDATE episodes SET start_time = "2024-03-08 17:00:00" WHERE episode_id = 2;
-UPDATE episodes SET start_time = "2024-03-15 17:00:00" WHERE episode_id = 3;
-UPDATE episodes SET start_time = "2024-03-22 17:00:00" WHERE episode_id = 4;
-UPDATE episodes SET start_time = "2024-03-29 17:00:00" WHERE episode_id = 5;
-UPDATE episodes SET start_time = "2024-04-05 17:00:00" WHERE episode_id = 6;
-UPDATE episodes SET start_time = "2024-04-12 17:00:00" WHERE episode_id = 7;
-UPDATE episodes SET start_time = "2024-02-24 00:00:00" WHERE episode_id = 9;
-UPDATE episodes SET start_time = "2024-03-01 22:35:00" WHERE episode_id = 10;
-UPDATE episodes SET start_time = "2024-03-01 23:00:00" WHERE episode_id = 11;
-UPDATE episodes SET start_time = "2024-03-01 23:30:00" WHERE episode_id = 12;
-UPDATE episodes SET start_time = "2024-03-02 00:30:00" WHERE episode_id = 14;
-UPDATE episodes SET start_time = "2024-03-02 16:00:00" WHERE episode_id = 15;
-UPDATE episodes SET start_time = "2024-03-02 17:00:00" WHERE episode_id = 16;
-UPDATE episodes SET start_time = "2024-03-02 18:00:00" WHERE episode_id = 17;
-
-すでに入れてある17のレコードを正しい日付+終了時刻に修正します。
-UPDATE episodes SET end_time = "2024-03-01 18:05:00" WHERE episode_id = 1;
-UPDATE episodes SET end_time = "2024-03-08 18:00:00" WHERE episode_id = 2;
-UPDATE episodes SET end_time = "2024-03-15 18:00:00" WHERE episode_id = 3;
-UPDATE episodes SET end_time = "2024-03-22 18:00:00" WHERE episode_id = 4;
-UPDATE episodes SET end_time = "2024-03-29 18:00:00" WHERE episode_id = 5;
-UPDATE episodes SET end_time = "2024-04-05 18:00:00" WHERE episode_id = 6;
-UPDATE episodes SET end_time = "2024-04-12 18:30:00" WHERE episode_id = 7;
-UPDATE episodes SET end_time = "2024-02-24 00:30:00" WHERE episode_id = 9;
-UPDATE episodes SET end_time = "2024-03-01 23:00:00" WHERE episode_id = 10;
-UPDATE episodes SET end_time = "2024-03-01 23:30:00" WHERE episode_id = 11;
-UPDATE episodes SET end_time = "2024-03-02 00:00:00" WHERE episode_id = 12;
-UPDATE episodes SET end_time = "2024-03-02 17:00:00" WHERE episode_id = 15;
-UPDATE episodes SET end_time = "2024-03-02 18:00:00" WHERE episode_id = 16;
-UPDATE episodes SET end_time = "2024-03-02 19:00:00" WHERE episode_id = 17;
-
-
-genresテーブルからサッカー、恋愛番組、韓流・華流、将棋、麻雀、格闘を削除します。
-DELETE FROM channels WHERE channel_id = 3;
-DELETE FROM channels WHERE channel_id = 5;
-DELETE FROM channels WHERE channel_id = 9;
-DELETE FROM channels WHERE channel_id = 10;
-DELETE FROM channels WHERE channel_id = 11;
-DELETE FROM channels WHERE channel_id = 12;
-
-誤ってchannelsテーブルから削除してしまったので、削除したチャンネルを追加します。
-INSERT INTO channels(channel_id, channel) VALUES(3, "バラエティ1");
-INSERT INTO channels(channel_id, channel) VALUES(5, "ニュース");
-INSERT INTO channels(channel_id, channel) VALUES(10, "スポーツ");
-
-genresテーブルからサッカー、恋愛番組、韓流・華流、将棋、麻雀、格闘を削除します。
-DELETE FROM genres WHERE genre_id = 3;
-DELETE FROM genres WHERE genre_id = 5;
-DELETE FROM genres WHERE genre_id = 9;
-DELETE FROM genres WHERE genre_id = 10;
-DELETE FROM genres WHERE genre_id = 11;
-DELETE FROM genres WHERE genre_id = 12;
-
-
-孤独のグルメのデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(5, "孤独のグルメ", 7, 2, "ただ料理のうんちくを述べるのではなく、ひたすらに主人公の食事シーンと心理描写をつづり、ドキュメンタリーのように淡々とストーリーが流れていく原作人気マンガ、「孤独のグルメ」を実写化。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(5, 5, 10);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(18, 5, "第2話 東京都港区白金台のルンダンとナシゴレン", "白金台のプラネタリウムバー。店長の細田(山崎まさよし)が熱心に星空を解説している中、日頃の疲れから睡魔と必死に戦っていた五郎(松重豊)だったが敗北、寝てしまう。", 30, "2024-03-02", 19000, "2024-03-02 20:15", "2024-03-02 20:57", 2);
-
-
-本日の番組表を表示するために、本日、どのチャンネルの、何時から、何の番組が放送されるのかを知りたいです。本日放送される全ての番組に対して、チャンネル名、放送開始時刻(日付+時間)、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を取得してください。なお、番組の開始時刻が本日のものを本日方法される番組とみなすものとします
-
-これでチャンネル名以外は取得できます。
-select programs.title, season, start_time, end_time, season, episode, episodes.title, epi_desc
-from episodes
-join seasons
-on episodes.season_id = seasons.season_id
-join programs
-on seasons.program_id = programs.program_id
-WHERE start_time BETWEEN "2024-03-02 00:00:00" AND "2024-03-02 23:59:59";
-
-あとチャンネル名だけ取得できればいいですね。
-channelsテーブルはprogramsテーブルの親なので、さっきのにchannelsテーブルを結合すれば取得できそうです。
-select channel, programs.title, season, start_time, end_time, season, episode, episodes.title, epi_desc
-from episodes
-join seasons
-on episodes.season_id = seasons.season_id
-join programs
-on seasons.program_id = programs.program_id
-join channels
-on programs.channel_id = channels.channel_id 
-WHERE start_time BETWEEN "2024-03-02 00:00:00" AND "2024-03-02 23:59:59";
-
-ドラマというチャンネルがあったとして、ドラマのチャンネルの番組表を表示するために、本日から一週間分、何日の何時から何の番組が放送されるのかを知りたいです。ドラマのチャンネルに対して、放送開始時刻、放送終了時刻、シーズン数、エピソード数、エピソードタイトル、エピソード詳細を本日から一週間分取得してください
-
-まだ数日分しかデータを入れていないので、少なくとも1日1つ、1週間分のデータを入れます。
-
-3/3 ABEMAニュース会見 済
-3/4 ASO飯塚チャレンジドゴルフトーナメント 済
-3/5 しくじり先生SP 済
-3/6 かまいたちの笑賭け 済
-3/7 孤独のグルメ 済
-3/8 トリック 済
-3/9 アンデッドアンラック 済
-3/10 インカレ水泳2023 済
-
-
-ABEMAニュース会見のデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(6, "ABEMAニュース会見", 8, 5, "日本初「会見チャンネル」。注目の記者会見や政府の会見からスポーツ・芸能関連の会見まで。日本に限らず世界の注目会見をリアルタイムに。");
-
-ABEMAニュース会見は単発エピソードなので、シーズンとエピソードが表示されないようにします。
-現状では、seasonsテーブルのseasonカラムとepisodesカラムのepisodeカラムにNOT NULL制約をかけているので、それを外します。
-
-ALTER TABLE seasons MODIFY COLUMN season BIGINT;
-ALTER TABLE episodes MODIFY COLUMN episode BIGINT;
-
-これでseasonsテーブルとepisodesテーブルにNULLを入れることができます。
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(6, 6, NULL);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(19, 6, "注目会見を逃さず生配信。最新ニュースも常時更新。", "日本初「会見チャンネル」。注目の記者会見や政府の会見からスポーツ・芸能関連の会見まで。日本に限らず世界の注目会見をリアルタイムに。", 60, "2024-03-03", 0, "2024-03-03 16:00", "2024-03-03 17:00", NULL);
-
-ASO飯塚チャレンジドゴルフトーナメントのデータを入れます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(7, "ASO飯塚チャレンジドゴルフトーナメント", 2, 10, "2022年よりジャパンゴルフツアーの新規トーナメントとして「ASO飯塚チャレンジドゴルフトーナメント」が開催されることとなりました。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(7, 7, NULL);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(20, 7, "ASO飯塚チャレンジドゴルフトーナメント最終日(2023.6.11)", "本大会は「株式会社麻生」主催、日本ゴルフツアー機構(JGTO)の共催で、6月8日(木)から4日間で開催いたします。", 475, "2024-03-03", 0, "2024-03-04 19:05", "2024-03-05 03:00", NULL);
-
-しくじり先生のデータを入れます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(8, "しくじり先生", 4, 3, "過去のしくじりから学ぶ反面教師バラエティ番組！！");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(8, 8, NULL);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(21, 8, "しくじり先生SP パチスロサミーのしくじりを狩野英孝が熱血授業‼", "過去に大きな失敗を体験した“しくじり先生”が生徒たちにしくじった経験を教える反面教師バラエティ番組「しくじり先生」！今回も“しくじり先生”による熱血授業を開講します！。", 54, "2024-03-05", 0, "2024-03-05 13:00", "2024-03-05 13:54", NULL);
-
-
-かまいたちの笑賭けのデータを入れます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(9, "かまいたちの笑賭け", 4, 3, "山内の不倫ゴシップで大混乱!?芸人の激ヤバゴシップ連発に凍りつく…着実に大金を稼ぎ出すかまいたち！どこまで金は増えていくのか！");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(9, 9, 1);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(22, 9, "かまいたちの笑賭け #3~4", "現在所持金300万円オーバー！さらに増やしてカジノでビッグドリームを掴み取れ！強力な助っ人も増えさらにパワーアップした笑賭けメンバー！大旋風は巻き起こるのか!?", 92, "2024-03-06", 0, "2024-03-06 05:34", "2024-03-06 07:06", 3);
-
-
-孤独のグルメのデータを入れます。
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(23, 5, "孤独のグルメ S10 第7話", "渋谷区「笹塚」。ゴルフのティーチングプロである石井隆史(飯塚悟志)の依頼でオーダーメイドのゴルフバッグの商談をしに来た五郎(松重豊)。レッスン生たちの指導に夢中な石井は、商談中にも生徒たちが気になり全く話が進まない。", 35, "2024-03-07", 0, "2024-03-07 08:40", "2024-03-07 09:15", 7);
-
-トリックのデータを入れます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(10, "トリック", 7, 2, "売れない奇術師・山田奈緒子は、ある日、若手物理学者・上田次郎が雑誌に掲載した、霊能力者たちへの挑戦状に出会う。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(10, 10, 1);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(24, 10, "トリック(2000年) 第3話", "奈緒子(仲間由紀恵)は青木(河原さぶ)の家で霧島澄子(菅井きん)の肖像を発見。青木は信者?", 60, "2024-03-08", 0, "2024-03-08 15:50", "2024-03-08 16:50", 3);
-
-アンデッドアンラックのデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(11, "アンデッドアンラック", 1, 6, "これは、二人が最高の死を見つけるお話。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(11, 11, 1);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(25, 11, "アンデッドアンラック #22", "触れた者に不幸な事故をもたらす“不運”、アンラックの力をもつ少女・出雲風子。その特異な体質から一度は死を覚悟した風子の前に絶対に死ねない“不死”の体を持つアンデッドの男が現れる。", 30, "2024-03-09", 0, "2024-03-09 03:10", "2024-03-09 03:40", 22);
-
-
-インカレ水泳のデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(12, "インカレ水泳", 2, 10, "「世界水泳福岡2023」を経てパリ五輪メダル候補の、学生トップスイマーが集結。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(12, 12, 1);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(26, 12, "インカレ水泳2023 2日目(2023/09/01)", "注目選手は、東京五輪で銀メダリストとなった本多灯(日大4年)。パリ五輪で金メダルを狙う21歳が、本命種目の200mバタフライで自己ベストを更新し、チームを3連覇に導けるか!?", 230, "2024-03-10", 0, "2024-03-10 07:20", "2024-03-10 11:10", 2);
-
-
-ドラマのチャンネルという指定があったので、ドラマのデータを5つ入れる。
-
-
-孤独のグルメのデータを入れます。
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(27, 5, "孤独のグルメ S10 第5話", "のどかな田園風景が広がる千葉県柏市。依頼人である吉川将吾(中田圭祐)の案内でこの地を訪れ、吉川の祖母(加藤美智子)の希望でインテリアや雑貨を提案しに来た五郎(松重豊)。", 42, "2024-03-05", 0, "2024-03-05 20:15", "2024-03-05 20:57", 5);
-
-打ち上げ花火、下から見るか？横から見るか？のデータを入れていきます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(13, "打ち上げ花火、下から見るか？横から見るか？", 7, 2, "「両親の離婚で転校することが決まっていたなずな（奥菜恵）は、プールで競った勝者と駆け落ちすることを企てる。少年少女の選択が異なる結末へ。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(13, 13, NULL);
-
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(28, 13, "打ち上げ花火、下から見るか？横から見るか？", "小学生の典道と祐介たち男子5人は、花火を横から見ると丸いのか、平べったいのかという素朴な疑問を抱き、花火大会の夜、その答えを確かめるべく町のはずれにある灯台に行くことを計画する。", 65, "2024-03-09", 0, "2024-03-09 12:00", "2024-03-09 13:05", NULL);
-
-特命係長只野仁のデータを入れます。
-INSERT INTO programs(program_id, title, genre_id, channel_id, description) VALUES(14, "特命係長 只野仁", 7, 2, "只野仁。大手広告代理店の窓際係長。しかし、それは表の顔にすぎない。彼には会長直属の特命係長として、さまざまなトラブルを解決するという、もう一つの顔があった・・・。。");
-
 INSERT INTO seasons(season_id, program_id, season) VALUES(14, 14, 1);
+```
 
-INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(29, 14, "特命係長 只野仁(2007) 第3話", "電王堂の大手クライアントである城山製菓の二代目社長・健志(徳重聡)が、仕事そっちのけで秘書のルミ(荒井美恵子)と遊びまくっているらしい。おかげで今、城山製菓は分裂の危機だという。", 55, "2024-03-10", 0, "2024-03-10 04:00", "2024-03-10 04:55", 3);
+### エピソードテーブル
 
+エピソードテーブルにデータを入れます。
+
+```sql
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(1, 1, "第1話 - 「星降る夜の出会い」", "新婚の夫婦、太郎と花子は、星が降る夜に偶然出会った。彼らはその夜、星を見ながら将来の夢や希望について語り合う。", 59, "2024-03-01", 88000, "2024-03-01 17:00:00", "2024-03-01 18:05:00", 1);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(2, 1, "第2話 - 「星降る夜の誓い」", "太郎と花子は結婚記念日を迎え、星空の下で再び誓いを交わす。しかし、突然の出来事が二人の関係に影を投げかける。", 46, "2024-03-08", 23000, "2024-03-08 17:00:00", "2024-03-08 18:00:00", 2);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(3, 1, "第3話 - 「星降る夜の旅立ち」", "太郎と花子は新しい挑戦に向けて家族と共に遠くへ旅立つ。星空の下での新たな人生の旅が始まる。", 46, "2024-03-15", 19000, "2024-03-15 17:00:00", "2024-03-15 18:00:00", 3);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(4, 1, "第4話 - 「星降る夜の絆」", "旅先で太郎と花子は困難に直面するが、家族や地元の人々との出会いによって絆を深める。", 46, "2024-03-22", 17000, "2024-03-22 17:00:00", "2024-03-22 18:00:00", 4);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(5, 1, "第5話 - 「星降る夜の再会」", "太郎と花子は過去の出来事を乗り越え、再び幸せな日々を取り戻す。しかし、新たな試練が待ち受けている。", 46, "2024-03-29", 17000, "2024-03-29 17:00:00", "2024-03-29 18:00:00", 5);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(6, 1, "第6話 - 「星降る夜の輝き」", "家族や友情の力を信じて、太郎と花子は困難を乗り越える。星空の下で、彼らの愛と絆が輝きを放つ。", 46, "2024-04-05", 16000, "2024-04-05 17:00:00", "2024-04-05 18:00:00", 6);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(7, 1, "第7話 - 「星降る夜の奇跡」", "物語の結末を迎える夜、太郎と花子は星が降る奇跡を目撃する。運命の軌跡が交差する中、彼らは新たな未来への扉を開く。", 78, "2024-04-12", 18000, "2024-04-12 17:00:00", "2024-04-12 18:30:00", 6);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(8, 2, "#25 星の輝き", "最後の試練を乗り越えた主人公たちは、ついに伝説の宝を手に入れる。しかし、その力を手にしたことで新たなる脅威が現れ、彼らは団結して立ち向かう。最終決戦が幕を開ける。", 30, "2024-03-02", 0, "2024-03-02 00:00:00", "2024-03-02 00:30:00", 25);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(9, 2, "#24 最後の試練", "主人公たちは、最後の試練に挑むために魔法の神殿に到着する。神殿内では、彼らを待ち受ける数々の難関が彼らの力を試し、最後の力を発揮することが求められる。", 30, "2024-02-24", 419000, "2024-02-24 00:00:00", "2024-02-24 00:30:00", 24);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(10, 3, "1話: 新たなる旅立ち", "エリアと仲間たちは新たな冒険に出発し、未知の地を目指す。しかし、彼らを待ち受けるのは予想外の困難だった。", 26, "2024-03-01", 562000, "2024-03-01 22:35:00", "2024-03-01 23:00:00", 1);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(11, 3, "2話: 魔法の森の謎", "一行は魔法の森に到着し、クリスタル・ウィングスの手掛かりを求めて探索を始める。しかし、森には古代の呪いが潜んでおり、彼らの進路を阻む。", 26, "2024-03-01", 169000, "2024-03-01 23:00:00", "2024-03-01 23:30:00", 2);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(12, 3, "3話: 友情の絆", "困難に立ち向かう中、エリアと仲間たちの絆がさらに深まる。彼らは互いの信頼と力を借り合いながら、進化する敵に立ち向かう。", 26, "2024-03-01", 154000, "2024-03-01 23:30:00", "2024-03-02 00:00:00", 3);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(13, 3, "4話: 魔法の試練", "クリスタル・ウィングスを求める一行は、魔法の試練に挑む。彼らは個々の魔法の力を高め、自らの内なる強さを発見する。", 26, "2024-03-02", 157000, "2024-03-02 00:00:00", "2024-03-02 00:30:00", 4);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(14, 3, "5話: 闇の脅威", "途中、彼らは闇の力によって脅かされる。新たな敵が現れ、エリアたちは自らの過去と向き合いながら、闇の脅威に立ち向かう決意をする。", 26, "2024-03-02", 155000, "2024-03-02 00:30:00", "2024-03-02 01:00:00", 5);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(15, 4, "#6: 砂漠の謎", "探検隊はアフリカの砂漠地帯に入り、厳しい環境と広大な砂漠の美しさに出会う。彼らは生き物たちの生態と、砂漠の生命力について学びながら、砂漠の謎に迫る。", 48, "2024-03-02", 578000, "2024-03-02 16:00:00", "2024-03-02 17:00:00", 6);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(16, 4, "#7： 野生の王国", "探検隊はアフリカのサバンナに足を踏み入れ、野生動物たちの王国を訪れる。ライオン、ゾウ、シマウマなど、アフリカの象徴的な動物たちの生態や行動を観察し、サバンナの生態系の驚異に触れる。", 52, "2024-03-02", 685000, "2024-03-02 17:00:00", "2024-03-02 18:00:00", 7);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(17, 4, "#8： 原始の美", "探検隊はアフリカの熱帯雨林に入り、原始的な美しさに魅了される。密林の奥深くに潜む生物たちや、川や滝の神秘的な姿を探求しながら、熱帯雨林の驚くべき生態系と美しさを体験する。", 52, "2024-03-02", 607000, "2024-03-02 18:00:00", "2024-03-02 19:00:00", 8);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(18, 5, "再会の味", "主人公はかつての恩師と再会し、彼の料理店で働く機会を得る。しかし、過去の確執や誤解が彼らの関係を複雑にし、再び料理の世界で対立することになる。彼らは料理の魔法を通じて過去の問題を解決し、新たなる絆を築くことができるのか、それとも決裂してしまうのか…。", 30, "2024-03-02", 19000, "2024-03-02 20:15:00", "2024-03-02 20:57:00", 2);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(19, 6, "南極大陸の挑戦", "特派員たちは、南極の氷山や氷河を背景に、科学者や探検家たちが直面する困難や彼らの研究成果について報告します。さらに、南極の野生動物や地球の気候変動への影響についても探求し、視聴者に地球の未知の一面を紹介します。", 60, "2024-03-03", 0, "2024-03-03 16:00:00", "2024-03-03 17:00:00", NULL);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(20, 7, "ゴルフ王者の挑戦", "世界トップクラスのゴルフプレイヤーたちが様々なゴルフコースでの挑戦を繰り広げます。特に注目されるのは、前人未到のゴルフコースでの新たなレコード挑戦です。", 475, "2024-03-04", 0, "2024-03-04 19:05:00", "2024-03-05 03:00:00", NULL);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(21, 8, "しくじりトーク大解剖！", "ゲストたちが過去のしくじりや失敗について率直に語ります。トークのテーマは、誰もが経験する失敗や挫折に関するものであり、ゲストたちは自身の失敗談や失敗から学んだことについて熱く語ります。", 54, "2024-03-05", 0, "2024-03-05 13:00:00", "2024-03-05 13:54:00", NULL);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(22, 9, "賭け事大騒動！", "ゲストたちは過去の面白い賭けや勝負、あるいは失敗した賭けについて語ります。お金やプライドをかけた大胆な賭けや、思わぬ展開が待ち受けるトークで、視聴者は笑いと緊張感に包まれます。", 92, "2024-03-06", 0, "2024-03-06 05:34:00", "2024-03-06 07:06:00", 3);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(23, 5, "失われたレシピ", "料理界の伝説とされるある料理人の秘密のレシピが再び世に現れるという噂が広まり、シェフたちはその真偽を確かめるために旅に出ます。彼らは失われたレシピの手掛かりを求め、様々な場所を巡りながら過去の味の記憶を辿ります。", 35, "2024-03-07", 0, "2024-03-07 08:40:00", "2024-03-07 09:15:00", 7);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(24, 10, "消えた証拠", "警察官のジョンソンは、殺人事件の容疑者を追跡する中で、重要な証拠が突如として消えてしまう。捜査が行き詰まりつつある中、彼は自らの直感に従い、証拠の消失に隠された真相を解明するために奮闘する。", 35, "2024-03-07", 0, "2024-03-07 08:40:00", "2024-03-07 09:15:00", 7);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(25, 11, "暗黒のウェブ", "彼らは暗黒のウェブと呼ばれる極秘のネットワークにアクセスし、敵の計画を阻止するために情報を収集します。しかし、ウェブの奥深くには危険な罠が待ち受けており、チームはその罠から逃れるために結束しなければなりません。", 30, "2024-03-09", 0, "2024-03-09 03:10:00", "2024-03-09 03:40:00", 22);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(26, 12, "日本海の戦い", "本海に面した競技場で、日本を代表する水泳選手たちが激しく競い合います。視聴者は、彼らの熱い戦いや努力を通じて、日本の水泳文化と選手たちの情熱に触れます。", 230, "2024-03-10", 0, "2024-03-10 07:20:00", "2024-03-10 11:10:00", 2);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(27, 5, "忘れられた食堂", "忘れ去られた食堂の秘密が明らかにされます。主人公たちは、かつて人々に愛されたある食堂の謎を解き明かすために旅に出ます。彼らは、かつての常連客や関係者との面会を通じて、その食堂が人々の心に残した特別な思い出を探ります。", 42, "2024-03-05", 0, "2024-03-05 20:15:00", "2024-03-05 20:57:00", 5);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(28, 13, "未知の探求者", "冒険心と好奇心に満ちた人々が未知の地域や未知の領域を探求する姿を追ったドキュメンタリー映画です。映画は、探検家、科学者、アーティストなど、さまざまな分野の人々が新しい発見や挑戦に取り組む様子を追い、彼らの情熱と努力を称賛します。", 65, "2024-03-09", 0, "2024-03-09 12:00:00", "2024-03-09 13:05:00", NULL);
+INSERT INTO episodes(episode_id, season_id, title, epi_desc, time, date, views, start_time, end_time, episode) VALUES(29, 14, "追跡者", "主人公が自らの過去を追跡する旅が描かれます。彼は過去の出来事や人物の謎に迫るために、新たな手がかりを探し求めます。その過程で、彼は不意に敵の存在に気付き、彼らの陰謀を暴くために行動します。", 55, "2024-03-10", 0, "2024-03-10 04:00:00", "2024-03-09 04:55:00", 3);
+```
