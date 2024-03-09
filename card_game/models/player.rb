@@ -7,7 +7,6 @@ class Player
   def initialize(name: '', is_dealer: false)
     @name = name
     @hand = []
-    @count = 26
     @is_dealer = is_dealer
   end
 
@@ -30,9 +29,19 @@ class Player
     hand.concat(tableau_cards)
   end
 
-
-  def calculate_score
-    # score =  Game::CARD_MARK_SCORE_MAP
-    # p score
+  # 引き分けでたまったカードをもらう
+  def get_draw_cards(draw_cards:)
+    hand.concat(draw_cards)
   end
+
+  # 持っているカードを確認する
+  def show_cards
+    hand
+  end
+  
+  # 枚数を確認する
+  def show_count
+    hand.size
+  end
+
 end

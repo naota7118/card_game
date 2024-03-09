@@ -17,15 +17,12 @@ class Game
     'A' => 14
   }
 
-  # プレイヤーに関する定数
-  MIN_PLAYER_COUNT = 2
-  MAX_PLAYER_COUNT = 5
-
-  def initialize(deck:, manual_player:, another_player:, tableau_cards:)
+  def initialize(deck:, manual_player:, another_player:, tableau_cards:, draw_cards:)
     @deck = deck
     @manual_player = manual_player
     @another_player = another_player
-    @tableau_cards = tableau_cards #場札
+    @tableau_cards = tableau_cards #テーブルに出したカード
+    @draw_cards = draw_cards #引き分けでたまったカード
   end
 
   def start
@@ -53,24 +50,59 @@ class Game
       another_mark =  @another_player.submitted_card[1]
       another_rank = CARD_MARK_SCORE_MAP[another_mark]
   
-      # 場札を配列で格納
-      @tableau_cards = [@manual_player.submitted_card, @another_player.submitted_card]
-  
+      # プレイヤーが場にカードを出す
+      @tableau_cards = []
+      @tableau_cards << @manual_player.submitted_card
+      @tableau_cards << @another_player.submitted_card
+
       if your_rank == another_rank
         puts '引き分けです。'
+        # 引き分けだと場札がたまる
+        @tableau_cards.each do |card|
+          @draw_cards << card
+        end
         next
       elsif your_rank > another_rank
-        puts 'プレイヤー1が勝ちました。'
+        puts "今回は#{@manual_player.name}が勝ちました。"
         # プレイヤー1が場札をもらう
         @manual_player.get_cards(tableau_cards: @tableau_cards)
-        puts "戦争を終了します。"
-        break
+
+        # 引き分けでたまったカードがあればもらう
+        if @draw_cards.size >= 1
+          @manual_player.get_draw_cards(draw_cards: @draw_cards)
+        end
+        # 引き分けでたまったカードが空になる
+        @draw_cards.clear
+
+        puts "#{@manual_player.name}は#{@manual_player.hand.size}枚もっています。"
+        puts "#{@another_player.name}は#{@another_player.hand.size}枚もっています。"
+
+        if @another_player.hand.size == 0
+          puts "#{@manual_player.name}が勝ちました。"
+          puts "戦争を終了します。"
+          break
+        end
       else
-        puts 'プレイヤー2が勝ちました。'
+        puts "今回は#{@another_player.name}が勝ちました。"
         # プレイヤー2が場札をもらう
         @another_player.get_cards(tableau_cards: @tableau_cards)
-        puts "戦争を終了します。"
-        break
+
+        # 引き分けでたまったカードがあればもらう
+        if @draw_cards.size >= 1
+          @another_player.get_draw_cards(draw_cards: @draw_cards)
+        end
+
+        puts "#{@manual_player.name}は#{@manual_player.hand.size}枚もっています。"
+        puts "#{@another_player.name}は#{@another_player.hand.size}枚もっています。"
+
+        # 引き分けでたまったカードが空になる
+        @draw_cards.clear
+
+        if @manual_player.hand.size == 0
+          puts "#{@another_player.name}が勝ちました。"
+          puts "戦争を終了します。"
+          break
+        end
       end
     end
   end

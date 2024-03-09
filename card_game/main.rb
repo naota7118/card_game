@@ -14,12 +14,11 @@ game = Game.new(
   deck: Deck.new,
   manual_player: you,
   another_player: another,
-  tableau_cards:[]
+  tableau_cards: [], #テーブルに出したカード
+  draw_cards: [] #引き分けでたまったカード
 )
 
 game.start
 
 game.advance_players_turn
-
-# game.judge
 
